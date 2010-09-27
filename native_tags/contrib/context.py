@@ -12,7 +12,8 @@ document = filter(function(document))
 
 def do_set(context, **kwargs):
     'Updates the context with the keyword arguments'
-    context.update(kwargs)
+    for k, v in kwargs.items():
+        context[k] = v
     return ''
 do_set = function(do_set, takes_context=1, name='set')
 

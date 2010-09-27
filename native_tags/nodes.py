@@ -99,9 +99,10 @@ class NativeNode(template.Node):
     def render(self, context):
         resolve = getattr(self.func, 'resolve', True)
         apply_filters = getattr(self.func, 'apply_filters', True)
+        varname = self.kwargs.pop('varname', None)
         args = self.get_args(context, resolve, apply_filters)
         kwargs = self.get_kwargs(context, resolve, apply_filters)
-        varname = kwargs.pop('varname', None)
+        self.kwargs['varname'] = varname
 
         def _get_result():
             try:
